@@ -8,42 +8,32 @@ database = 'test'
 try:
     # Establish a connection
     mydb = MySQLConnection(user=user, password=password, database=database)
-    cursor = mydb.cursor()
-
-    # Create the table
-    create_table_query = """
-    CREATE TABLE IF NOT EXISTS mytable (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(255), idade VARCHAR(255), peso VARCHAR(255)
-    )
-    """
-    cursor.execute(create_table_query)
-    mydb.commit()
-
-    # Insert data into the table
-    insert_query = "INSERT INTO mytable (nome) VALUES (%s)"
-    data = [("Alice",), ("Bob",), ("Charlie",), ("David",), ("Eve",)]
-    cursor.executemany(insert_query, data)
-    mydb.commit()
-
-    insert_query1 = "INSERT INTO mytable (idade) VALUES (%s)"
-    data1 =[("23",) ,("19",) ,("18",) ,("15",), ("29",)]
-    cursor.executemany(insert_query, data1)
-    mydb.commit()
-    
-    # Fetch and print data from the table
-    cursor.execute("SELECT * FROM mytable")
-    rows = cursor.fetchall()
-
-    for row in rows:
-        print(row)
-
-    cursor.close()
-    mydb.close()
 
 except errors.ProgrammingError as e:
     print("Error:", e)
 
+mycursor = mydb.cursor()
+"""Create a Table in Database"""
+# mycursor.execute("CREATE TABLE students (name VARCHAR(255), age INTEGER(10))")
+
+"""Insert data in Database Table"""
+sqlFormula = "INSERT INTO students (name, age) VALUES (%s, %s)"
+students = [('João', 32),
+            ('Fábio', 31),
+            ('André', 28),
+            ("Maria", 58),
+            ("Ana", 35)]
+
+mycursor.executemany(sqlFormula, students)
+
+"""Save all the changes"""
+mydb.commit()
+
+"""See tables"""
+mycursor.execute("SHOW TABLES")
+
+for tb in mycursor:
+    print(tb)
 
 
 
