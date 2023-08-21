@@ -41,8 +41,15 @@ mycursor = mydb.cursor()
 # mydb.commit()
 
 """Select data with limit chose"""
-mycursor.execute("SELECT * FROM students LIMIT 5")
+# mycursor.execute("SELECT * FROM students LIMIT 5")
+# myresult = mycursor.fetchall()
+
+# for result in myresult:
+#     print(result)
+
+"""Ordering by name"""
+mycursor.execute("SELECT * FROM students order by name")
 myresult = mycursor.fetchall()
 
-for result in myresult:
-     print(result)
+for r in myresult:
+    print(r)
