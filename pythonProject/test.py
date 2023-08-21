@@ -34,9 +34,15 @@ mycursor = mydb.cursor()
 """See tables"""
 # mycursor.execute("SHOW TABLES")
 
-"""Update data (Change João age)"""
-sql = "UPDATE students SET age = 34 WHERE name = 'João'"
+"""Update data (ex: Change João age)"""
+# sql = "UPDATE students SET age = 34 WHERE name = 'João'"
 
-mycursor.execute(sql)
-mydb.commit()
+# mycursor.execute(sql)
+# mydb.commit()
 
+"""Select data with limit chose"""
+mycursor.execute("SELECT * FROM students LIMIT 5")
+myresult = mycursor.fetchall()
+
+for result in myresult:
+     print(result)
