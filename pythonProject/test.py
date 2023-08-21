@@ -56,8 +56,9 @@ mycursor = mydb.cursor()
 #    print(r)
 
 """Delete entrys"""
-mycursor.execute("DELETE FROM students WHERE name ='João'")
+# mycursor.execute("DELETE FROM students WHERE name ='João'")
+# mydb.commit()
+
+"""Drop/Delete Tables"""
+mycursor.execute("DROP TABLE students")
 mydb.commit()
-
-
-
