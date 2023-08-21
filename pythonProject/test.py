@@ -48,8 +48,16 @@ mycursor = mydb.cursor()
 #     print(result)
 
 """Ordering by name"""
-mycursor.execute("SELECT * FROM students order by name")
-myresult = mycursor.fetchall()
+# mycursor.execute("SELECT * FROM students ORDER BY name")
+# mycursor.execute("SELECT * FROM students ORDER BY name DESC ")
+# myresult = mycursor.fetchall()
 
-for r in myresult:
-    print(r)
+# for r in myresult:
+#    print(r)
+
+"""Delete entrys"""
+mycursor.execute("DELETE FROM students WHERE name ='João'")
+mydb.commit()
+
+
+
