@@ -1,40 +1,42 @@
 from mysql.connector import MySQLConnection, errors
 
-# Connection parameters
+""" Connection parameters """
 user = 'root'
 password = '12345678'
 database = 'test'
 
 try:
-    # Establish a connection
+    """Establish a connection"""
     mydb = MySQLConnection(user=user, password=password, database=database)
 
 except errors.ProgrammingError as e:
     print("Error:", e)
 
+"""Inicialize cursor"""
 mycursor = mydb.cursor()
+
 """Create a Table in Database"""
 # mycursor.execute("CREATE TABLE students (name VARCHAR(255), age INTEGER(10))")
 
 """Insert data in Database Table"""
-sqlFormula = "INSERT INTO students (name, age) VALUES (%s, %s)"
-students = [('João', 32),
-            ('Fábio', 31),
-            ('André', 28),
-            ("Maria", 58),
-            ("Ana", 35)]
+# sqlFormula = "INSERT INTO students (name, age) VALUES (%s, %s)"
+# students = [('João', 32),
+#            ('Fábio', 31),
+#           ('André', 28),
+#            ("Maria", 58),
+#            ("Ana", 35)]
 
-mycursor.executemany(sqlFormula, students)
+#mycursor.executemany(sqlFormula, students)
 
 """Save all the changes"""
-mydb.commit()
+# mydb.commit()
 
 """See tables"""
-mycursor.execute("SHOW TABLES")
+# mycursor.execute("SHOW TABLES")
 
-for tb in mycursor:
-    print(tb)
+"""Update data (Change João age)"""
+sql = "UPDATE students SET age = 34 WHERE name = 'João'"
 
-
-
+mycursor.execute(sql)
+mydb.commit()
 
